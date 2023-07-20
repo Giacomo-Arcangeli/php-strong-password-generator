@@ -4,6 +4,11 @@ require __DIR__ . '/includes/functions.php';
 
 if(isset($_GET['length'])){
     $password = create_password($_GET['length']);
+
+    if($password === true){
+        header('Location: success.php');
+    }
+
 }
 
 ?>
@@ -28,14 +33,13 @@ if(isset($_GET['length'])){
         <input type="number" id="length" name="length">
         
         <button type="submit">Invia</button>
-        <button type="submit">Annulla</button>
 
     </form>
+
     <?php
     if(isset($password)) : ?>
-    <div class="alert alert-info">La tua password é: <b><?= $password ?></b></div>
+    <div class="alert alert-danger"><b><?= $password ?></b></div>
     <?php endif ?>
-
 
 </body>
 </html>

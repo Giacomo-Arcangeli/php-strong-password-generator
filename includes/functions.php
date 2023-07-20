@@ -9,6 +9,12 @@ function create_password($lenght){
 
     $total_characters = mb_strlen($characters);
 
+
+    if(empty($lenght)) return 'Lunghezza password non inserita';
+
+    elseif($lenght < 0) return 'Lunghezza password non valida';
+
+
     while(mb_strlen($password) < $lenght){
         $random_index = rand(0, $total_characters - 1);
 
@@ -16,8 +22,12 @@ function create_password($lenght){
 
         $password.= $random_character;
     }
+
+    session_start();
+
+    $_SESSION['password'] = $password;
     
-    return $password;
+    return true;
 }
 
 ?>
